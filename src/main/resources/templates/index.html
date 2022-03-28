@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>BUSINESS MANAGER</title>
+<style type="text/css">
+  h1{
+  color:blue;
+   }
+   table{
+   border-collapse:collapse;
+   line-height:35px;
+   line-width:50px;
+   text-align:center;
+   font-style:Times New Roman;
+   }
+   button{
+    width:50px;
+    heigth:10px;
+    margin:5px;
+    paddding:10px;
+    border-radius:2px;}
+    .b1{
+    background:#5678;
+    color:white;
+    }
+     .b2{
+    background:red;
+    color:white;
+    }
+   th{
+   color:green;
+   }
+   p{
+   padding-bottom:20px;
+   }
+  div{
+   width:600px;
+   margin:0 auto;
+   padding:20px;
+   heigth:auto;
+   background:#e5e6e7;}  
+</style>
+</head>
+<body>
+<div align="center">
+  <h1>BUSINESS OPERATIONS ARTIFACTS</h1>
+  <a href="new">create your new business artifact</a>
+  <table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>GOOD TYPE</th>
+      <th>OWNER</th>
+      <th>LOCATION</th>
+      <th>AMOUNT PER DAY</th>
+      <th>PASSWORD</th>
+      <th>ACTIONS</th>
+      </tr>
+</thead>
+<tbody>
+  <tr th:each="business : ${list}">
+      <td th:text="${business.Id}">ID</td>
+      <td th:text="${business.name}">NAME</td>
+      <td th:text="${business.goods}">GOOD TYPE</td>
+      <td th:text="${business.Owner}">OWNER</td>
+      <td th:text="${business.Locaton}">LOCATION</td>
+       <td th:text="${business.amount_p_day}">AMOUNT PER DAY</td>
+      <td th:text="${business.Password}">PASSWORD</td>  
+      <td><a th:href="@{/crud/edit(businessid=${business.Id})}"><button class="b1">edit</button></a><a th:href="@{'/crud/delete/'+ ${business.Id}}"><button class="b2">delete</button></a></td>
+  </tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+  h1{
+  color:blue;
+   }
+   .t{
+   border-collapse:collapse;
+   line-height:30px;
+   text-align:center;
+   border:none;
+   color:#000000;
+   font-style:Times New Roman;
+   }
+      .b{
+    width:60px;
+    heigth:15px;
+    paddding:10px;
+    background:green;
+    color:white;
+    border-radius:2px solid green;}
+      .d1{
+   width:750px;
+   margin:0 auto;
+   padding:20px;
+   heigth:auto;
+   background:#e5e6e7;}  
+   
+     h2{
+  color:blue;
+   }
+   .t2{
+   border-collapse:collapse;
+   line-height:35px;
+   line-width:50px;
+   text-align:center;
+   font-style:Times New Roman;
+   }
+   button{
+    width:50px;
+    heigth:10px;
+    margin:5px;
+    paddding:10px;
+    border-radius:2px;}
+    .b1{
+    background:#5678;
+    color:white;
+    }
+     .b2{
+    background:red;
+    color:white;
+    }
+   th{
+   color:green;
+   }
+   p{
+   padding-bottom:20px;
+   } 
+   .close{
+     color:green;
+     padding:20px;
+   }
+   .dw{
+   width:350px;
+   height:30px;
+   background:blue;
+   color:white;
+   }
+</style>
+</head>
+<body>
+<div align="center" class="d1">
+   <h1>USER REGISTRATION FORM</h1>
+   <div th:if="${successmessage}">
+   <button type="button" class="close" data-dismiss="alert"></button>
+   <strong th:text="${successmessage}">
+   </strong>
+   </div>
+<form action="#" th:action="@{${isAdd}?'/ufile/savee':'/ufile/update'}" th:object="${user}" method="post" 
+ enctype="multipart/form-data">
+<table class="t" border="1">
+       <tr>
+       <td>First Name</td>
+      <td><input type="text" th:field="*{name}" /></td> 
+      </tr>
+         <tr>
+       <td>last Name</td>
+      <td><input type="text" th:field="*{last}" /></td> 
+      </tr>
+      <tr>
+      <tr>
+      <td>Address</td>
+     <td><input type="text" th:field="*{address}"/></td>
+     </tr>  
+     <tr>
+       <td>Location</td>
+     <td><input type="text" th:field="*{location}"/></td>
+     </tr>
+    <tr>
+     <td>Gender</td>
+     <td><input type="text" th:field="*{genda}"/></td> 
+    </tr>
+    <tr>
+     <td>Age</td>
+     <td><input type="text" th:field="*{age}"/></td> 
+     </tr>
+      <tr>
+     <td>Email</td>
+     <td><input type="email" th:field="*{email}"/></td> 
+     </tr>
+      <tr>
+     <tr>
+     <td>Password</td>
+     <td><input type="password" th:field="*{Password}"/></td> 
+     </tr>
+      <tr>
+       <td>File</td>
+     <td><input type="file" placeholder="Upload Files" th:field="*{files}" multiple="multiple"/></td> 
+     </tr>
+  <tr>
+  <td colspan="2"><button th:text="${isAdd}?'savee':'update'" type="submit" class="b"></button>
+  </td>
+  </tr>
+      <tr>
+    <td><input type="hidden" th:field="*{Id}"/></td>
+      </tr>
+</table>
+</form>
+</div>
+
+<div align="center" class="d1">
+  <h2>ALL USERS DETAILS</h2>
+  <table border="1" class="t2">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>FIRST NAME</th>
+      <th>LAST NAME</th>
+      <th>ADDRESS</th>
+      <th>GENDER</th>
+      <th>LOCATION</th>
+      <th>AGE</th>
+      <th>EMAIL</th>
+      <th>PASSWORD</th>
+       <th>ACTIONS</th>
+      </tr>
+</thead>
+<tbody>
+  <tr th:each="user : ${mylist}">
+      <td th:text="${user.Id}">ID</td>
+      <td th:text="${user.name}">FIRST NAME</td>
+       <td th:text="${user.last}">LAST NAME</td>
+      <td th:text="${user.address}">ADDRESS</td>
+      <td th:text="${user.genda}">GENDER</td>
+      <td th:text="${user.location}">LOCATION</td>
+      <td th:text="${user.age}">AGE</td>  
+      <td th:text="${user.email}">EMAIL</td>   
+      <td th:text="${user.Password}">PASSWORD</td>  
+      <td><a th:href="@{'/ufile/update/'+ ${user.Id}}"><button  class="b1">edit</button>
+      </a><a th:href="@{'/ufile/deletee/'+ ${user.Id}}"><button  class="b2">delete</button></a></td>
+  </tr>
+</tbody>
+</table>
+  <div>
+  <a th:href="@{'/dfile/download'}"><button class="dw">Select files to Download</button></a>
+  </div>
+</div>
+</body>
+</html>

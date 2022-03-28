@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>USER FILES PAGE</title>
+<style>
+.anu{
+width:500px;
+height:auto;
+background:#e5e6;
+border:1px solid #5678;
+margin:5px auto;
+padding:10px;
+}
+   .file{
+   display:inline-block;
+   padding:10px 15px;
+   align:center;
+   border:1px dotted blue;
+   }
+    .close{
+     color:green;
+     padding:20px;
+   }
+</style>
+</head>
+<body>
+<div class="anu">
+ <div th:if="${successmessage}">
+   <button type="button" class="close" data-dismiss="alert"></button>
+   <strong th:text="${successmessage}">
+   </strong>
+   </div>
+<th:block th:each="doc :${listdocs}" >
+ <div class="file">
+   <a th:href="@{'/dfile/deletefile/'+ ${doc.id}}">delete</a>
+   <div>
+   <img th:src="@{/img/icons8-jpg-24.png}" style="width:50px;"/>
+   </div>
+   <div>
+  <a th:href="@{'/dfile/downloadfile/'+${doc.name}+'/'+${doc.ModifiedFileName}}">[[${doc.name}]]</a>
+  </div>
+ </div>
+</th:block>   
+</div>
+</body>
+</html>
